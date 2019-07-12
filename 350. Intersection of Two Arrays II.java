@@ -25,6 +25,7 @@ class Solution {
         }
         return intersect;
     }
+    // my solutin
     public int[] intersect1(int[] nums1, int[] nums2) {
 
         // <number, # of times appears in this array>
