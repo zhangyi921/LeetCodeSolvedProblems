@@ -1,5 +1,6 @@
 class Solution {
     
+    // beat 100% all other algorithms!!!
     HashMap<Integer, Integer> map = new HashMap<>();
     public int rob(int[] nums) {
         map.clear();
