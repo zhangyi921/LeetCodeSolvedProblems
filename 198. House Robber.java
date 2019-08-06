@@ -2,7 +2,37 @@ class Solution {
     
     // beat 100% all other algorithms!!!
     HashMap<Integer, Integer> map = new HashMap<>();
-    public int rob(int[] nums) {
+
+    // DP solution
+    public int rob(int[] nums){
+        if (nums.length == 0) return 0;
+        if (nums.length == 1) return nums[0];
+        
+        // each number stores the max profit if rob this one
+        int[] profits = new int[nums.length];
+        
+        // initial set up
+        int maxProfit = 0;
+        profits[0] = nums[0];
+        profits[1] = nums[1];
+        maxProfit = profits[0] > profits[1] ? profits[0] : profits[1];
+        if (nums.length > 2){
+            profits[2] = nums[2] + profits[0];
+            maxProfit = maxProfit > profits[2] ? maxProfit : profits[2];
+        }
+        
+        // if rob the current one, the max profit is
+        // max(current-2's profit + current profit, current-3's profit + current profit)
+        for (int i = 3; i < nums.length; ++i){
+            profits[i] = profits[i-2]+nums[i] > profits[i-3]+nums[i] ? profits[i-2]+nums[i] : profits[i-3]+nums[i];
+            maxProfit = maxProfit > profits[i] ? maxProfit : profits[i];
+        }
+        
+        return maxProfit;
+    }
+
+    // recur solution
+    public int rob1(int[] nums) {
         map.clear();
         if (nums.length == 0) return 0;
         if (nums.length == 1) return nums[0];
